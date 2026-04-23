@@ -18,17 +18,21 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 async def handle_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("⏳ Analyzing your X-ray... please wait.")
+    await update.message.reply_text("⏳ Analyzing your X-ray... please wait 30-60 seconds.")
     try:
         photo = update.message.photo[-1] if update.message.photo else update.message.document
         file = await context.bot.get_file(photo.file_id)
         await file.download_to_drive("temp_xray.jpg")
 
-        client = Client(HF_SPACE)
+        client = Client(HF_SPACE, httpx_kwargs={"timeout": 120})
         result = client.predict(
             image="temp_xray.jpg",
             api_name="/generate_report"
         )
+
+        # Split long messages for Telegram
+        if len(result) > 4000:
+            result = result[:4000]
 
         await update.message.reply_text(
             f"🩺 *AI Radiology Report*\n\n{result}",
