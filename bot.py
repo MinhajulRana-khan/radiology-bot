@@ -1,5 +1,4 @@
 import logging
-import asyncio
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from gradio_client import Client
@@ -26,10 +25,10 @@ async def handle_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await file.download_to_drive("temp_xray.jpg")
 
         client = Client(HF_SPACE)
-      result = client.predict(
-    image="temp_xray.jpg",
-    api_name="/generate_report"
-)
+        result = client.predict(
+            image="temp_xray.jpg",
+            api_name="/generate_report"
+        )
 
         await update.message.reply_text(
             f"🩺 *AI Radiology Report*\n\n{result}",
