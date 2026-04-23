@@ -6,7 +6,7 @@ from gradio_client import Client
 import os
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
-HF_SPACE = "Minhajul-islam/ai-radiology-report-generator"
+HF_SPACE = "Minhajul-islam/Report_Generation_from_Xrayimages"
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 
