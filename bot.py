@@ -26,10 +26,10 @@ async def handle_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await file.download_to_drive("temp_xray.jpg")
 
         client = Client(HF_SPACE)
-        result = client.predict(
-            image="temp_xray.jpg",
-            api_name="/predict"
-        )
+      result = client.predict(
+    image="temp_xray.jpg",
+    api_name="/generate_report"
+)
 
         await update.message.reply_text(
             f"🩺 *AI Radiology Report*\n\n{result}",
