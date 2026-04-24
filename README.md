@@ -1,15 +1,68 @@
+# AI Radiology Report Generator
+
+An AI-powered system that automatically generates structured radiology reports from chest X-ray images using Google Gemini Vision API. Built as part of an independent research project on EMR and PACS integration at Daffodil International University (DIU), Bangladesh.
+
 ---
 
-## 📊 Dataset
+## Live Demo
 
-**Indiana University Chest X-rays**
+- Web App: https://huggingface.co/spaces/Minhajul-islam/radiology-streamlit-ui
+- Telegram Bot: https://t.me/Willpower6316Bot
+
+---
+
+## Features
+
+- Upload chest X-ray images (PNG, JPG, JPEG)
+- AI-generated structured radiology reports
+- Bilingual output in English and Bengali
+- Patient information input (Name, ID, Age, Gender)
+- Export report as downloadable PDF
+- Telegram bot for instant report generation
+- BLEU and ROUGE evaluation against ground truth reports
+
+---
+
+## Project Architecture
+
+User uploads X-ray → Gradio Web UI or Telegram Bot → Google Gemini 2.5 Flash Vision API → Structured Radiology Report (Findings + Impression + Recommendation) → PDF Export or Telegram Message
+
+---
+
+## Project Structure
+
+ai-radiology-report-generator/
+│
+├── notebooks/
+│   └── radiology_pipeline.ipynb
+│
+├── huggingface_gradio/
+│   ├── app.py
+│   └── requirements.txt
+│
+├── huggingface_streamlit/
+│   ├── app.py
+│   └── requirements.txt
+│
+├── telegram_bot/
+│   ├── bot.py
+│   ├── requirements.txt
+│   └── Procfile
+│
+└── README.md
+
+---
+
+## Dataset
+
+Indiana University Chest X-rays
 - 3,788 frontal chest X-ray images
 - Paired radiology reports (findings + impression)
-- Source: [Kaggle](https://www.kaggle.com/datasets/raddar/chest-xrays-indiana-university)
+- Source: https://www.kaggle.com/datasets/raddar/chest-xrays-indiana-university
 
 ---
 
-## 📈 Evaluation Results
+## Evaluation Results
 
 | Metric | Score |
 |--------|-------|
@@ -18,11 +71,11 @@
 | ROUGE-2 | 0.1389 |
 | ROUGE-L | 0.2127 |
 
-> Note: Low BLEU/ROUGE scores are expected in medical report generation as AI uses different but clinically equivalent wording compared to ground truth.
+Note: Low BLEU and ROUGE scores are expected in medical report generation as AI uses different but clinically equivalent wording compared to ground truth.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -38,53 +91,43 @@
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 ### 1. Clone the repo
-```bash
-git clone https://github.com/YOUR_USERNAME/ai-radiology-report-generator.git
+git clone https://github.com/MinhajulRana-khan/ai-radiology-report-generator.git
 cd ai-radiology-report-generator
-```
 
 ### 2. Install dependencies
-```bash
 pip install gradio google-genai Pillow reportlab
-```
 
 ### 3. Set your Gemini API key
-```bash
 export GEMINI_API_KEY="your_api_key_here"
-```
 
 ### 4. Run the web app
-```bash
 cd huggingface_streamlit
 python app.py
-```
 
 ### 5. Run the Telegram bot
-```bash
 cd telegram_bot
 export BOT_TOKEN="your_bot_token_here"
 python bot.py
-```
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
-This system is developed for **research purposes only**. It is **not intended for clinical use**. Always consult a qualified radiologist for medical diagnosis.
+This system is developed for research purposes only. It is not intended for clinical use. Always consult a qualified radiologist for medical diagnosis.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
-**Minhajul Islam**
+Minhajul Islam
 Student, Daffodil International University (DIU), Bangladesh
-Independent AI Research Project — EMR & PACS Integration
+Independent AI Research Project on EMR and PACS Integration
 
 ---
 
-## 📄 License
+## License
 
-MIT License — feel free to use, modify, and distribute with attribution.
+MIT License
